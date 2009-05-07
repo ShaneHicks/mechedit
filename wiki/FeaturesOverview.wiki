@@ -1,0 +1,10 @@
+= Features Overview =
+
+  * Admin/Editor Levels
+     Administrators can setup pages and accounts, editors can change data.
+  * Full Language Support
+     Pages can be created for any language. 
+  * Themes
+     Themes can be changed to fit your particular website.
+  * Define Regions To Edit
+     By Adding a tag to the HTML class you define which regions the client can edit.
