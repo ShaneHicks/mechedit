@@ -19,8 +19,8 @@ function getUsers()
     $users = file_get_contents(DATA_DIR.'users.dat');
     if ($users === false)
     {
-        $userData[0] = array ('id'=>'0', 'site'=>'Administrator', 'user'=>'admin', 'password'=>'adminpass', 'role'=>'admin');
-        $userData[1] = array ('id'=>'1', 'site'=>'Editor', 'user'=>'editor', 'password'=>'editorpass', 'role'=>'editor');
+        $userData[0] = array ('id'=>'0', 'displayname'=>'Administrator', 'user'=>'admin', 'password'=>'adminpass', 'role'=>'admin');
+        $userData[1] = array ('id'=>'1', 'displayname'=>'Editor', 'user'=>'editor', 'password'=>'editorpass', 'role'=>'editor');
         putUsers($userData);
     } else
     {
