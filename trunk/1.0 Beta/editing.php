@@ -26,6 +26,8 @@ function mainContent(){
 		echo file_get_contents(LANGUAGE_DIR.'site_manager.html');
 	}elseif($_GET[q]=='edit'){
 		echo file_get_contents(LANGUAGE_DIR.'page_editor.html');
+	}elseif($_GET[q]=='user'){
+		echo file_get_contents(LANGUAGE_DIR.'user_manager.html');
 	}elseif($_GET[q]=='logout'){
 		session_destroy();
 		echo "<script>document.location='index.php'</script>"; // Redirect to login page
@@ -43,6 +45,9 @@ function scriptIncludes(){
 		echo '<script src="jscripts/mechedit/siteManager.js"></script>'."\n";
 		echo '<script src="jscripts/mechedit/pageManager.js"></script>'."\n";
 	}
+	if($_GET[q]=='user'){ // Site Manager Script
+		echo '<script src="jscripts/mechedit/userManager.js"></script>'."\n";
+	}
 	if($_GET[q]=='edit'){ // Site Manager Script
 		echo '<script type="text/javascript" src="jscripts/tiny_mce/tiny_mce.js"></script>'."\n";
 		echo '<script src="jscripts/other/json2.js"></script>'."\n";
@@ -57,6 +62,7 @@ function buildLinks(){
 	        <li><a href="index.php"><?=TXT_HOME?></a></li>
 <?php if(isset($_SESSION['role']) && $_SESSION['role']=='admin'): ?>
 	        <li><a href="index.php?q=sites"><?=TXT_SITES?></a></li>
+	        <li><a href="index.php?q=user"><?=TXT_USER?></a></li>
 <?php endif ?>
 <?php if(isset($_SESSION['role'])): ?>
 	        <li><a href="index.php?q=edit"><?=TXT_EDITOR?></a></li>

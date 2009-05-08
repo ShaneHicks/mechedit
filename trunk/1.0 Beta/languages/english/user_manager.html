@@ -1,0 +1,52 @@
+<h2>User Management</h2>
+<div>
+	<div style="display:block;">
+		<div style="float: left">
+			Select Site: <select id="siteList" onchange="selectChange()"><option>Loading...</option></select>
+		</div>
+		<div style="float:right;" id="statusBox">
+			--
+		</div>
+	</div>
+	<br />
+	<hr>
+	<div id="editSite" style="display:none;">
+		<div id="siteInfo" style="float: left;">
+			<h3>Site Configuration</h3>
+			<table>
+				<tr><td>Username</td><td><input id="FLD_user" class="datafield"></td></tr>
+				<tr><td>Password</td><td><input type="password" id="FLD_password" class="datafield"></td></tr>
+				<tr><td>Role</td><td><input id="FLD_role" class="datafield"></td></tr>
+				<tr><td><input type="button" value=" Delete User " class="datafield" onclick="removeRecord();"></td><td align="right"><input type="button" value="Save Site" onclick="saveData()"></td></tr>
+			</table>
+			<input type="hidden" id="FLD_id" class="datafield">
+		</div>
+		<div id="sitePages" style="float:right; width:500px;">
+			<h3>User Pages</h3>
+			<table cellpadding="3" cellspacing="0">
+				<tr><td>Sites</td><td><option id="PAG_sites"></option></td></tr>
+				<tr><td>Pages</td><td><option id="PAG_pages"></option></td></tr>
+				<tr><td align="right" colspan="2"><input type="button" value="Add Page" onclick="addPage()"></td></tr>
+			</table>
+			<h4>Active Pages for User</h4>			
+			<table id="activePages" width="100%">
+				<thead>
+					<tr><td>Page</td><td>Path/Filename</td><td>&nbsp;</td></tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+			
+		</div>
+	</div>
+</div>
+
+<script>
+	// Language Definitions
+	var removeRecordText="Are you sure you wish to DELETE this user?";
+	var saveConfirmText="Are you sure you wish to save this user?";
+	var addNewSite="Add New Site...";
+	var chooseSite="Choose Site";
+	var addPageText="Are you sure you want to add this page to this user?";
+	var removePageText="Are you sure you want to DELETE this page from this user?";
+	var deletePageText="[Delete]";
+</script>
