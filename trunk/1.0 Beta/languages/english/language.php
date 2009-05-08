@@ -14,7 +14,7 @@ Redistributions of files must retain the above copyright notice.
 define(LANGUAGE_NAME,'English - US');
 define(TXT_HOME,'Home');
 define(TXT_SITES,'Add/Remove Sites');
-define(TXT_SITES,'Users');
+define(TXT_USER,'Users');
 define(TXT_EDITOR,'Edit Pages');
 define(TXT_LOGOUT,'Logout');
 define(TXT_PORTAL,'Editing Portal');
