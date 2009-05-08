@@ -1,3 +1,4 @@
+
 /*******************************************************************************
 Mech Edit Copyright 2009 Robert W. Mech
  ($Rev: 0 $)
@@ -10,8 +11,22 @@ Redistributions of files must retain the above copyright notice.
 *******************************************************************************/
 	var siteData;
 	$(document).ready(function(){
-		loadSites();
-	});
+		loadUsers();
+	}); 
+	function loadUsers(){
+	    $.getJSON("userManager.php?action=list&_rn=" + Math.random(0, 10000), function(data){
+			var options="";
+				options += '<option value="">('+chooseUser+')</option>';
+			for(i=0;i<data.length;i++){
+				options += '<option value="'+data[i].id+'">'+data[i].displayname+'</option>';
+			}
+				options += '<option value="-1">'+addNewUser+'</option>';
+			siteData=data;
+			$('#userList').html(options);
+			loadSite($('#userList option:selected').val());
+		});
+	}
+
 	function removeRecord(){
 		if (confirm(removeRecordText)) {
 			$.getJSON("siteManager.php?action=delete&FLD_id="+$('#FLD_id').val(),function(data){  
@@ -36,21 +51,8 @@ Redistributions of files must retain the above copyright notice.
 			 });
 		}
 	}
-	function loadSites(){
-		    $.getJSON("siteManager.php?action=list&_rn=" + Math.random(0, 10000), function(data){
-				var options="";
-					options += '<option value="">('+chooseSite+')</option>';
-				for(i=0;i<data.length;i++){
-					options += '<option value="'+data[i].id+'">'+data[i].site+'</option>';
-				}
-					options += '<option value="-1">'+addNewSite+'</option>';
-				siteData=data;
-				$('#siteList').html(options);
-				loadSite($('#siteList option:selected').val());
-			});
-	}
 	function selectChange(){
-		if($('#siteList option:selected').val()==-1){
+		if($('#userList option:selected').val()==-1){
 		// Effect, fade out then clearn for new data.
 			$('#editSite').fadeOut('slow',function(){
 				$('#FLD_site').val('');

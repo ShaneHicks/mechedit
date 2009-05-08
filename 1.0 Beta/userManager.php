@@ -11,4 +11,27 @@ your project, and use it accordingly.
 Redistributions of files must retain the above copyright notice.
 *******************************************************************************/
 
+include 'configure.php';
+require_once 'authentication.php';
+session_start();
+if ( isset ($_GET['action']) && !processLogin())
+{
+    echo NOT_AUTHENTICATED;
+    exit ;
+}
+
+// Actions for this XHR File
+if ($_GET['action'] == 'list')
+    listUsers();
+if ($_GET['action'] == 'update')
+    addUpdateData();
+if ($_GET['action'] == 'delete')
+    removeData();
+
+// XHR Functions
+function listUsers()
+{
+    $userData = getUsers();
+	echo json_encode($userData);
+}
 ?>
