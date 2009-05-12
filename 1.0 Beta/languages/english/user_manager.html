@@ -25,8 +25,8 @@
 		<div id="sitePages" style="float:right; width:500px;">
 			<h3>User Pages</h3>
 			<table cellpadding="3" cellspacing="0">
-				<tr><td>Sites</td><td><option id="PAG_sites"></option></td></tr>
-				<tr><td>Pages</td><td><option id="PAG_pages"></option></td></tr>
+				<tr><td>Sites</td><td><select id="siteList" onchange="listSitePages();"></select></td></tr>
+				<tr><td>Pages</td><td><select id="pageList"></select></td></tr>
 				<tr><td align="right" colspan="2"><input type="button" value="Add Page" onclick="addPage()"></td></tr>
 			</table>
 			<h4>Active Pages for User</h4>			
@@ -47,6 +47,7 @@
 	var saveConfirmText="Are you sure you wish to save this user?";
 	var addNewUser="Add New User...";
 	var chooseUser="Choose User";
+	var chooseSite="Choose Site";
 	var addPageText="Are you sure you want to add this page to this user?";
 	var removePageText="Are you sure you want to DELETE this page from this user?";
 	var deletePageText="[Delete]";

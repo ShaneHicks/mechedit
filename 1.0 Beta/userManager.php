@@ -14,8 +14,7 @@ Redistributions of files must retain the above copyright notice.
 include 'configure.php';
 require_once 'authentication.php';
 session_start();
-if ( isset ($_GET['action']) && !processLogin())
-{
+if ( isset ($_GET['action']) && !processLogin()){
     echo NOT_AUTHENTICATED;
     exit ;
 }
