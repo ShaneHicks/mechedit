@@ -23,16 +23,16 @@ Redistributions of files must retain the above copyright notice.
 				options += '<option value="-1">'+addNewUser+'</option>';
 			siteData=data;
 			$('#userList').html(options);
-			loadSite($('#userList option:selected').val());
+			loadUser($('#userList option:selected').val());
 		});
 	}
 
 	function removeRecord(){
 		if (confirm(removeRecordText)) {
-			$.getJSON("siteManager.php?action=delete&FLD_id="+$('#FLD_id').val(),function(data){  
+			$.getJSON("userManager.php?action=delete&FLD_id="+$('#FLD_id').val(),function(data){  
 			  // Display Response to transmission
 			   alert(data.status);  
-			   loadSites();
+			   loadUsers();
 			 });
 		}
 	}
@@ -44,33 +44,33 @@ Redistributions of files must retain the above copyright notice.
 				  queryString+="&"+this.id+"="+this.value;  
 			 });
 			 // Send Data 
-			$.getJSON("siteManager.php?action=update"+queryString,function(data){  
+			$.getJSON("userManager.php?action=update"+queryString,function(data){  
 			  // Display Response to transmission
 			   alert(data.status);  
-			   loadSites();
+			   loadUsers();
 			 });
 		}
 	}
 	function selectChange(){
 		if($('#userList option:selected').val()==-1){
 		// Effect, fade out then clearn for new data.
-			$('#editSite').fadeOut('slow',function(){
-				$('#FLD_site').val('');
+			$('#editUser').fadeOut('slow',function(){
+				$('#FLD_displayname').val('');
 				$('#FLD_user').val('');
 				$('#FLD_password').val('');
-				$('#FLD_path').val('');
+				$('#FLD_role').val('Editor');
 				$('#FLD_id').val(Math.random() * Math.pow(10, 17) + Math.random() * Math.pow(10, 17)); // Psuduo Unique Number
-				$('#editSite').fadeIn('slow');
+				$('#editUser').fadeIn('slow');
 				$('#sitePages').fadeOut('slow');
 			});
 		}else{
-			loadSite($('#siteList option:selected').val());
-			$('#sitePages').fadeIn('slow');
+			loadUser($('#userList option:selected').val());
+			$('#userList').fadeIn('slow');
 		} 
 	}
-	function loadSite(id){
+	function loadUser(id){
 		// Effect, fade out then load data.
-		$('#editSite').fadeOut('slow',function(){
+		$('#editUser').fadeOut('slow',function(){
 			var found=false; // Trigger for found/not found
 			for(i=0;i<siteData.length;i++)	{
 				if(siteData[i].id==id){
@@ -82,9 +82,9 @@ Redistributions of files must retain the above copyright notice.
 				}
 			}
 			if(found==false){
-				$('#editSite').fadeOut('slow');
+				$('#editUser').fadeOut('slow');
 			}else{
-				$('#editSite').fadeIn('slow');
+				$('#editUser').fadeIn('slow');
 				listPages();
 			}
 		});

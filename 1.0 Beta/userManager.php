@@ -34,4 +34,53 @@ function listUsers()
     $userData = getUsers();
 	echo json_encode($userData);
 }
+
+function addUpdateData(){
+    // Build new array array ('id'=>'0', 'displayname'=>'Administrator', 'user'=>'admin', 'password'=>'adminpass', 'role'=>'admin');
+    $replacementData = array ('id'=>$_GET['FLD_id'], 'displayname'=>$_GET['FLD_displayname'], 'user'=>$_GET['FLD_user'], 'password'=>$_GET['FLD_password'], 'role'=>$_GET['FLD_role']);
+	// Load Users
+    $userData = getUsers();
+	// Iterate sites, replace if ID match
+	$found = false;
+	for ($i = 0; $i < sizeof($userData); $i++)
+	{
+	    if ($userData[$i]['id'] == $_GET['FLD_id'])
+	    {
+	        $found = true;
+		    $userData[$i] = $replacementData;
+			break;
+		}
+	}
+	
+	// if no match, add new site or report updated
+	if ($found == false){
+		    $userData[] = $replacementData;
+			echo "{status:'".USER_ADDED."'}";
+		} else{
+			echo "{status:'".USER_UPDATED."'}";
+		}
+	// Save
+	putUsers($userData);
+}
+
+function removeData()
+{
+    $userData = getUsers();
+	for ($i = 0; $i < sizeof($userData); $i++){
+	    if ($userData[$i]['id'] == $_GET['FLD_id']){
+	        $found = true;
+		    unset ($userData[$i]);
+			break;
+		}
+	}
+	
+	if ($found == false){
+	    echo "{status:'".USER_NOT_FOUND."'}";
+	}else{
+	    echo "{status:'".USER_DELETED."'}";
+	}
+	array_unshift($userData, array_shift($userData));
+	putUsers($userData);
+}
+
 ?>
