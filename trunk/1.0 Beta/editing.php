@@ -46,6 +46,7 @@ function scriptIncludes(){
 		echo '<script src="jscripts/mechedit/pageManager.js"></script>'."\n";
 	}
 	if($_GET[q]=='user'){ // Site Manager Script
+		echo '<script src="jscripts/mechedit/siteManager.js"></script>'."\n";
 		echo '<script src="jscripts/mechedit/userManager.js"></script>'."\n";
 	}
 	if($_GET[q]=='edit'){ // Site Manager Script

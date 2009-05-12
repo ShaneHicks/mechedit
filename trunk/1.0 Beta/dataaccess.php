@@ -13,8 +13,7 @@
  *******************************************************************************/
 
 // Users
-function getUsers()
-{
+function getUsers(){
     error_reporting(0);
     $users = file_get_contents(DATA_DIR.'users.dat');
     if ($users === false)
@@ -31,14 +30,34 @@ function getUsers()
 
 }
 
-function putUsers($userData)
-{
+function putUsers($userData){
     file_put_contents(DATA_DIR.'users.dat', serialize($userData));
 }
 
+
+function getUserPages(){
+    error_reporting(0);
+    $users = file_get_contents(DATA_DIR.'userpages.dat');
+    if ($users === false)
+    {
+        $userPageData = array ();
+        putUserPages($userPageData);
+    } else
+    {
+        $userPageData = unserialize($users);
+    }
+    error_reporting(1);
+    return $userPageData;
+
+}
+
+function putUserPages($userPageData){
+    file_put_contents(DATA_DIR.'userpages.dat', serialize($userPageData));
+}
+
+
 // Generic Get Sites Function
-function getSites()
-{
+function getSites(){
 
     error_reporting(0);
     $sites = file_get_contents(DATA_DIR.'sites.dat');
@@ -54,16 +73,14 @@ function getSites()
     return $siteData;
 }
 
-function putSites($siteData)
-{
+function putSites($siteData){
     file_put_contents(DATA_DIR.'sites.dat', serialize($siteData));
 }
 
 
 
 // Pages
-function getPages()
-{
+function getPages(){
     error_reporting(0);
     $pages = file_get_contents(DATA_DIR.'pages.dat');
     if ($pages === false)
@@ -78,8 +95,7 @@ function getPages()
     return $pageData;
 }
 
-function putPages($pageData)
-{
+function putPages($pageData){
     file_put_contents(DATA_DIR.'pages.dat', serialize($pageData));
 }
 ?>

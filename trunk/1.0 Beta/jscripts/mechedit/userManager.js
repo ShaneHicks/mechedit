@@ -9,7 +9,7 @@ MIT and GPL licenses. This means that you can choose the license that best suits
 your project, and use it accordingly.
 Redistributions of files must retain the above copyright notice.
 *******************************************************************************/
-	var siteData;
+	var userData;
 	$(document).ready(function(){
 		loadUsers();
 	}); 
@@ -21,9 +21,10 @@ Redistributions of files must retain the above copyright notice.
 				options += '<option value="'+data[i].id+'">'+data[i].displayname+'</option>';
 			}
 				options += '<option value="-1">'+addNewUser+'</option>';
-			siteData=data;
+			userData=data;
 			$('#userList').html(options);
 			loadUser($('#userList option:selected').val());
+			loadSites();
 		});
 	}
 
@@ -72,11 +73,11 @@ Redistributions of files must retain the above copyright notice.
 		// Effect, fade out then load data.
 		$('#editUser').fadeOut('slow',function(){
 			var found=false; // Trigger for found/not found
-			for(i=0;i<siteData.length;i++)	{
-				if(siteData[i].id==id){
+			for(i=0;i<userData.length;i++)	{
+				if(userData[i].id==id){
 					// Populate based on key to form value.
-					for(var key in siteData[i]){  
-			       		$('#FLD_'+key).val(eval('siteData[i].'+key));  
+					for(var key in userData[i]){  
+			       		$('#FLD_'+key).val(eval('userData[i].'+key));  
 		    		 }  				
 					 found=true;
 				}
@@ -90,15 +91,6 @@ Redistributions of files must retain the above copyright notice.
 		});
 	}
 
-
-
-
-
-
-
-
-
-
 function addPage(){
 	if(confirm(addPageText)){
 		var queryString='';
@@ -107,7 +99,7 @@ function addPage(){
 			  queryString+="&"+this.id+"="+this.value; 
 		 });
 		 // Send Data 
-		$.getJSON("pageManager.php?action=add"+queryString+'&id='+$('#FLD_id').val(),function(data){  
+		$.getJSON("userPageManager.php?action=add"+queryString+'&id='+$('#FLD_id').val(),function(data){  
 		  // Display Response to transmission
 		   alert(data.status);  
 		   listPages();
@@ -117,18 +109,27 @@ function addPage(){
 }
 function removePage(pageKey){
 	if (confirm(removePageText)) {
-		$.getJSON("pageManager.php?action=remove&key=" + pageKey, function(data){
+		$.getJSON("userPageManager.php?action=remove&key=" + pageKey, function(data){
 			alert(data.status)
 		   listPages();
 		});
 	}
 }
 function listPages(){
-	    $.getJSON("pageManager.php?action=list&id="+$('#FLD_id').val()+"&_rn=" + Math.random(0, 10000), function(data){
+	    $.getJSON("userPageManager.php?action=list&user="+$('#FLD_user').val()+"&_rn=" + Math.random(0, 10000), function(data){
 			var html="";
 			for(i=0;i<data.length;i++){
 			html += '<tr><td>'+data[i].title+'</td><td>'+data[i].path+'</td><td><div class="clickField" onclick="removePage(\''+data[i].key+'\')">'+deletePageText+'</div></td></tr>';
 			}
 			$('#activePages>tbody').html(html);
 		});
+}
+function listSitePages(){
+    $.getJSON("pageManager.php?action=list&id="+$('#siteList option:selected').val()+"&_rn=" + Math.random(0, 10000), function(data){
+		var html="";
+		for(i=0;i<data.length;i++){
+		html += '<option value="'+data[i].key+'">'+data[i].title+'</option>';
+		}
+		$('#pageList').html(html);
+	});
 }

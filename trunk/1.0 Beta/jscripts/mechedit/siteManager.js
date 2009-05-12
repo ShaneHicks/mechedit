@@ -43,7 +43,9 @@ Redistributions of files must retain the above copyright notice.
 				for(i=0;i<data.length;i++){
 					options += '<option value="'+data[i].id+'">'+data[i].site+'</option>';
 				}
-					options += '<option value="-1">'+addNewSite+'</option>';
+					// added typeof check here so we can use this JS in other places.
+					if(typeof(addNewSite)!='undefined')
+						options += '<option value="-1">'+addNewSite+'</option>';
 				siteData=data;
 				$('#siteList').html(options);
 				loadSite($('#siteList option:selected').val());
