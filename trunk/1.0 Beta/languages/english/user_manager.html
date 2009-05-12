@@ -10,14 +10,15 @@
 	</div>
 	<br />
 	<hr>
-	<div id="editSite" style="display:none;">
-		<div id="siteInfo" style="float: left;">
-			<h3>Site Configuration</h3>
+	<div id="editUser" style="display:none;">
+		<div id="userInfo" style="float: left;">
+			<h3>User Setup</h3>
 			<table>
+				<tr><td>Displayed Name</td><td><input id="FLD_displayname" class="datafield"></td></tr>
 				<tr><td>Username</td><td><input id="FLD_user" class="datafield"></td></tr>
 				<tr><td>Password</td><td><input type="password" id="FLD_password" class="datafield"></td></tr>
 				<tr><td>Role</td><td><input id="FLD_role" class="datafield"></td></tr>
-				<tr><td><input type="button" value=" Delete User " class="datafield" onclick="removeRecord();"></td><td align="right"><input type="button" value="Save Site" onclick="saveData()"></td></tr>
+				<tr><td><input type="button" value=" Delete User " class="datafield" onclick="removeRecord();"></td><td align="right"><input type="button" value=" Save User " onclick="saveData()"></td></tr>
 			</table>
 			<input type="hidden" id="FLD_id" class="datafield">
 		</div>
