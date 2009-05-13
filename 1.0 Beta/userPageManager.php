@@ -36,7 +36,7 @@ function removePage(){
 	}
 	if($found==true){
 		array_unshift ($userPageData, array_shift ($userPageData));
-		putPages($userPageData);	
+		putUserPages($userPageData);	
 		echo "{status:'".PAGE_DELETED."'}";
 	}else{
 		echo "{status:'".PAGE_NOT_FOUND."'}";
@@ -47,7 +47,7 @@ function listPages(){
 	$pageResult=array();	
 	$userPageData=getUserPages();
 	for($i=0;$i<sizeof($userPageData);$i++){
-		if($userPageData[$i]['user']==$_GET['PAG_user']){
+		if($userPageData[$i]['user']==$_GET['user']){
 			$pageResult[]=$userPageData[$i];
 		}
 	}
@@ -56,8 +56,8 @@ function listPages(){
 function addPage(){
 	// No "update" just add pages, delete and re-add if update necessary.
 	$userPageData=getUserPages();
-	$userPageData[]=array('id'=> $_GET['id'], 'user'=>$_GET['PAG_user'],'key'=>$_GET['PAG_key']);
-	putPages($userPageData);
+	$userPageData[]=array('id'=> $_GET['id'], 'user'=>$_GET['user'],'key'=>$_GET['key'],'title'=>$_GET['title'],'site'=>$_GET['site']);
+	putUserPages($userPageData);
 	echo "{status:'".PAGE_ADDED."'}";
 }
 ?>
