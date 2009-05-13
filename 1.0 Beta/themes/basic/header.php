@@ -23,7 +23,11 @@ Mech Edit is available for use in all personal or commercial projects under both
 <?php
         scriptIncludes();
             ?>        
-<script src="jscripts/jquery/jquery.corner.js"></script>    
+<script src="jscripts/jquery/jquery.corner.js"></script>
+<script>
+	//  Theme Wide Settings
+	ajaxLoader='<img src="themes/basic/images/ajax-loader.gif">';
+</script>    
   </head>    
   <body>        
     <div id="wrapper">            

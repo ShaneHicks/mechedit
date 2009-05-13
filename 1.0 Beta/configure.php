@@ -23,9 +23,9 @@ require_once ('dataaccess.php');
 // Appearance Settings
 
 define(THEME_PATH, 'themes/basic/');
-define(COMPANY_NAME, 'MechEdit');
+define(COMPANY_NAME, 'Company Name');
 define(COMPANY_LOGO, 'images/logo.gif');
-define(VERSION_STRING, 'Version 1.0 Alpha');
+define(VERSION_STRING, 'Version 1.0 Beta');
 
 // Language
 define(LANGUAGE_DIR, 'languages/english/');
