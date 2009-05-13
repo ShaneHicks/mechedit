@@ -14,6 +14,7 @@ Redistributions of files must retain the above copyright notice.
 		loadUsers();
 	}); 
 	function loadUsers(){
+        $('#statusBox').html(loadingMessage);
 	    $.getJSON("userManager.php?action=list&_rn=" + Math.random(0, 10000), function(data){
 			var options="";
 				options += '<option value="">('+chooseUser+')</option>';
@@ -23,6 +24,7 @@ Redistributions of files must retain the above copyright notice.
 				options += '<option value="-1">'+addNewUser+'</option>';
 			userData=data;
 			$('#userList').html(options);
+	        $('#statusBox').html('');
 			loadUser($('#userList option:selected').val());
 			loadSites();
 		});
@@ -30,15 +32,18 @@ Redistributions of files must retain the above copyright notice.
 
 	function removeRecord(){
 		if (confirm(removeRecordText)) {
+	        $('#statusBox').html(loadingMessage);
 			$.getJSON("userManager.php?action=delete&FLD_id="+$('#FLD_id').val(),function(data){  
 			  // Display Response to transmission
 			   alert(data.status);  
+			   $('#statusBox').html('');
 			   loadUsers();
 			 });
 		}
 	}
 	function saveData(){
 		if(confirm(saveConfirmText)){
+	        $('#statusBox').html(loadingMessage);
 			var queryString='';
 			// Build Data
 			$('.datafield').each(function(){  
@@ -48,6 +53,7 @@ Redistributions of files must retain the above copyright notice.
 			$.getJSON("userManager.php?action=update"+queryString,function(data){  
 			  // Display Response to transmission
 			   alert(data.status);  
+		        $('#statusBox').html('');
 			   loadUsers();
 			 });
 		}
@@ -93,6 +99,7 @@ Redistributions of files must retain the above copyright notice.
 
 function addPage(){
 	if(confirm(addPageText)){
+        $('#statusBox').html(loadingMessage);
 		var queryString='';
 		 // Send Data 
 		$.getJSON("userPageManager.php?action=add"+queryString+
@@ -103,6 +110,7 @@ function addPage(){
 				'&user='+$('#FLD_user').val(),function(data){  
 					  // Display Response to transmission
 					   alert(data.status);  
+				        $('#statusBox').html('');
 					   listPages();
 				   	   $('.pagefield').val('');
 		 });
@@ -110,27 +118,33 @@ function addPage(){
 }
 function removePage(pageKey){
 	if (confirm(removePageText)) {
+        $('#statusBox').html(loadingMessage);
 		$.getJSON("userPageManager.php?action=remove&key=" + pageKey, function(data){
 			alert(data.status)
+			$('#statusBox').html('');
 		   listPages();
 		});
 	}
 }
 function listPages(){
+		$('#statusBox').html(loadingMessage);
 	    $.getJSON("userPageManager.php?action=list&user="+$('#FLD_user').val()+"&_rn=" + Math.random(0, 10000), function(data){
 			var html="";
 			for(i=0;i<data.length;i++){
 			html += '<tr><td>'+data[i].site+'</td><td>'+data[i].title+'</td><td><div class="clickField" onclick="removePage(\''+data[i].key+'\')">'+deletePageText+'</div></td></tr>';
 			}
 			$('#activePages>tbody').html(html);
+	        $('#statusBox').html('');
 		});
 }
 function listSitePages(){
+    $('#statusBox').html(loadingMessage);
     $.getJSON("pageManager.php?action=list&id="+$('#siteList option:selected').val()+"&_rn=" + Math.random(0, 10000), function(data){
 		var html="";
 		for(i=0;i<data.length;i++){
 		html += '<option value="'+data[i].key+'">'+data[i].title+'</option>';
 		}
 		$('#pageList').html(html);
+        $('#statusBox').html('');
 	});
 }

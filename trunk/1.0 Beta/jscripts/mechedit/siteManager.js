@@ -14,15 +14,18 @@ Redistributions of files must retain the above copyright notice.
 	});
 	function removeRecord(){
 		if (confirm(removeRecordText)) {
+	        $('#statusBox').html(loadingMessage);
 			$.getJSON("siteManager.php?action=delete&FLD_id="+$('#FLD_id').val(),function(data){  
 			  // Display Response to transmission
-			   alert(data.status);  
+			   alert(data.status);
+		        $('#statusBox').html('');
 			   loadSites();
 			 });
 		}
 	}
 	function saveData(){
 		if(confirm(saveConfirmText)){
+	        $('#statusBox').html(loadingMessage);
 			var queryString='';
 			// Build Data
 			$('.datafield').each(function(){  
@@ -31,12 +34,14 @@ Redistributions of files must retain the above copyright notice.
 			 // Send Data 
 			$.getJSON("siteManager.php?action=update"+queryString,function(data){  
 			  // Display Response to transmission
-			   alert(data.status);  
-			   loadSites();
+			   alert(data.status);
+		        $('#statusBox').html('');
+			   loadSites();		   
 			 });
 		}
 	}
 	function loadSites(){
+        	$('#statusBox').html(loadingMessage);
 		    $.getJSON("siteManager.php?action=list&_rn=" + Math.random(0, 10000), function(data){
 				var options="";
 					options += '<option value="">('+chooseSite+')</option>';
@@ -48,6 +53,7 @@ Redistributions of files must retain the above copyright notice.
 						options += '<option value="-1">'+addNewSite+'</option>';
 				siteData=data;
 				$('#siteList').html(options);
+		        $('#statusBox').html('');
 				loadSite($('#siteList option:selected').val());
 			});
 	}

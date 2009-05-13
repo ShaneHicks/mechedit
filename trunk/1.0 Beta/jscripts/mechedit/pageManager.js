@@ -10,6 +10,7 @@ Redistributions of files must retain the above copyright notice.
 *******************************************************************************/
 function addPage(){
 	if(confirm(addPageText)){
+        $('#statusBox').html(loadingMessage);
 		var queryString='';
 		// Build Data
 		$('.pagefield').each(function(){  
@@ -19,6 +20,7 @@ function addPage(){
 		$.getJSON("pageManager.php?action=add"+queryString+'&id='+$('#FLD_id').val(),function(data){  
 		  // Display Response to transmission
 		   alert(data.status);  
+	        $('#statusBox').html('');
 		   listPages();
 	   	   $('.pagefield').val('');
 		 });
@@ -26,18 +28,22 @@ function addPage(){
 }
 function removePage(pageKey){
 	if (confirm(removePageText)) {
+        $('#statusBox').html(loadingMessage);
 		$.getJSON("pageManager.php?action=remove&key=" + pageKey, function(data){
 			alert(data.status)
+			$('#statusBox').html('');
 		   listPages();
 		});
 	}
 }
 function listPages(){
+		$('#statusBox').html(loadingMessage);
 	    $.getJSON("pageManager.php?action=list&id="+$('#FLD_id').val()+"&_rn=" + Math.random(0, 10000), function(data){
 			var html="";
 			for(i=0;i<data.length;i++){
 			html += '<tr><td>'+data[i].title+'</td><td>'+data[i].path+'</td><td><div class="clickField" onclick="removePage(\''+data[i].key+'\')">'+deletePageText+'</div></td></tr>';
 			}
 			$('#activePages>tbody').html(html);
+	        $('#statusBox').html('');
 		});
 }

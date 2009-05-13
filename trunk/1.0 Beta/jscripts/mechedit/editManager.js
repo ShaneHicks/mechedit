@@ -13,6 +13,7 @@ var siteData;
 
 // Page Init Functions
 $(document).ready(function(){
+    $('#statusBox').html(loadingMessage);
     loadSites();
    
 });
@@ -22,7 +23,7 @@ $(document).ready(function(){
  */
 function submitChanges(updateID){
     if (confirm(confirmUpdate)) {
-        $('#statusBox').html('Sending Data...');
+        $('#statusBox').html(loadingMessage);
 
         // Prepare Data For Update
         var region = 'region_' + updateID;
@@ -40,7 +41,7 @@ function submitChanges(updateID){
  * Load site data onto page
  */
 function loadSites(){
-    $('#statusBox').html('Loading...');
+    $('#statusBox').html(loadingMessage);
     $.getJSON("userPageManager.php?action=list&_rn=" + Math.random(0, 10000), function(data){
 
         var options = "";
@@ -58,8 +59,7 @@ function loadSites(){
  * Get Page Data from server, decode and place onto screen.
  */
 function getPage(){
-
-    $('#statusBox').html('Loading...');
+    $('#statusBox').html(loadingMessage);
     pageID = $('#pageList option:selected').val();
     $.getJSON("editManager.php?action=get&key=" + $('#pageList option:selected').val() + "&_rn=" + Math.random(0, 10000), function(data){
         var pageHTML = '';
