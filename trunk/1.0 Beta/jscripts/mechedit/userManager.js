@@ -94,16 +94,17 @@ Redistributions of files must retain the above copyright notice.
 function addPage(){
 	if(confirm(addPageText)){
 		var queryString='';
-		// Build Data
-		$('.pagefield').each(function(){  
-			  queryString+="&"+this.id+"="+this.value; 
-		 });
 		 // Send Data 
-		$.getJSON("userPageManager.php?action=add"+queryString+'&id='+$('#FLD_id').val(),function(data){  
-		  // Display Response to transmission
-		   alert(data.status);  
-		   listPages();
-	   	   $('.pagefield').val('');
+		$.getJSON("userPageManager.php?action=add"+queryString+
+				'&id='+$('#FLD_id').val()+
+				'&site='+$('#siteList option:selected').text()+
+				'&key='+$('#pageList option:selected').val()+
+				'&title='+$('#pageList option:selected').text()+
+				'&user='+$('#FLD_user').val(),function(data){  
+					  // Display Response to transmission
+					   alert(data.status);  
+					   listPages();
+				   	   $('.pagefield').val('');
 		 });
 	}
 }
@@ -119,7 +120,7 @@ function listPages(){
 	    $.getJSON("userPageManager.php?action=list&user="+$('#FLD_user').val()+"&_rn=" + Math.random(0, 10000), function(data){
 			var html="";
 			for(i=0;i<data.length;i++){
-			html += '<tr><td>'+data[i].title+'</td><td>'+data[i].path+'</td><td><div class="clickField" onclick="removePage(\''+data[i].key+'\')">'+deletePageText+'</div></td></tr>';
+			html += '<tr><td>'+data[i].site+'</td><td>'+data[i].title+'</td><td><div class="clickField" onclick="removePage(\''+data[i].key+'\')">'+deletePageText+'</div></td></tr>';
 			}
 			$('#activePages>tbody').html(html);
 		});
