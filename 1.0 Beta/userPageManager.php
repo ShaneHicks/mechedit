@@ -17,6 +17,12 @@ if(isset($_GET['action']) && !processLogin()){
 	echo NOT_AUTHENTICATED;
 	exit;
 }
+
+// Default Values
+if(!isset($_GET['user'])){
+	$_GET['user']=$_SESSION['username'];
+}
+
 // Actions for this XHR File
 if($_GET['action']=='list')
 	listPages();

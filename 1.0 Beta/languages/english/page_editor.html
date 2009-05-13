@@ -1,27 +1,15 @@
 <h2>Page Editor</h2>
 <div>
-	<div style="display:block;">
-		<div style="float: left">
-			Select Site: <select id="siteList" onchange="selectChange()"><option>Loading...</option></select>
-		</div>
-		<div style="float:right;" id="statusBox">
-			--
-		</div>
-	</div>
-	<br />
-	<hr>
-	<div id="editPage" style="display:none;">
+	<div id="editPage">
 		Available Pages To Edit: <select id="pageList" ><option>Loading...</option></select> <input type="button" value="Edit Page" onclick="getPage();">
-		<hr>
 	</div>
 	<div id="page" style="display:block;width:100%">
-		<hr>
 	</div>
 </div>
 
 <script>
 	// Language Definitions
-	var chooseSite="Choose Site";
+	var chooseSite="Choose Site & Page";
 	var untitledText='Untitled Region';
 	var submitChangeTxt='Submit Changes';
 	var confirmUpdate='Are you sure you wish to update this page?';
