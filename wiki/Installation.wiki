@@ -12,6 +12,7 @@ This software requires PHP5 to operate.  It does not support PHP4.
 Quick Installation 
   * Unzip files and upload to server
   * Modify the configure.php in the root directory.  *make sure you place the data directory in a non-public directory*
+    Permissions on data directory should be 777 so php can access it.
   * Login with default login/password which is admin/adminpass
 
 = Using The Software =
