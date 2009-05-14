@@ -17,7 +17,7 @@
 				<tr><td>Displayed Name</td><td><input id="FLD_displayname" class="datafield"></td></tr>
 				<tr><td>Username</td><td><input id="FLD_user" class="datafield"></td></tr>
 				<tr><td>Password</td><td><input type="password" id="FLD_password" class="datafield"></td></tr>
-				<tr><td>Role</td><td><input id="FLD_role" class="datafield"></td></tr>
+				<tr><td>Role</td><td><select id="FLD_role" class="datafield"></select></td></tr>
 				<tr><td><input type="button" value=" Delete User " class="datafield" onclick="removeRecord();"></td><td align="right"><input type="button" value=" Save User " onclick="saveData()"></td></tr>
 			</table>
 			<input type="hidden" id="FLD_id" class="datafield">
@@ -52,6 +52,8 @@
 	var removePageText="Are you sure you want to DELETE this page from this user?";
 	var deletePageText="[Delete]";
 	var loadingMessage='Loading...';
+	var adminRoleName='Administrator';
+	var editorRoleName='Editor';
 	// Used to place ajax loader instead of images.
 	if(typeof(ajaxLoader) != 'undefined'){
 		loadingMessage=ajaxLoader;

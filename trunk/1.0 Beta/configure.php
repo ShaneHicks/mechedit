@@ -12,18 +12,12 @@
  Redistributions of files must retain the above copyright notice.
  *******************************************************************************/
 
-
-
 // In the future this could be easily changed to use MYSQL instead of text files.
-
 require_once ('dataaccess.php');
 
-
-
 // Appearance Settings
-
 define(THEME_PATH, 'themes/basic/');
-define(COMPANY_NAME, 'Company Name');
+define(COMPANY_NAME, 'CMS Portal');
 define(COMPANY_LOGO, 'images/logo.gif');
 define(VERSION_STRING, 'Version 1.0 Beta');
 
@@ -32,7 +26,6 @@ define(LANGUAGE_DIR, 'languages/english/');
 include LANGUAGE_DIR.'language.php';
 
 // Software Configuration
-
 define(CSS_TAG, 'clientedit');
 
 // Strongly suggested this not be publically accessable directory!!!!!!!

@@ -46,8 +46,12 @@ Redistributions of files must retain the above copyright notice.
 	        $('#statusBox').html(loadingMessage);
 			var queryString='';
 			// Build Data
-			$('.datafield').each(function(){  
-				  queryString+="&"+this.id+"="+this.value;  
+			$('.datafield').each(function(){
+				  if(this.id=='FLD_role'){
+					  queryString+="&"+this.id+"="+$('#FLD_role option:selected').val();  
+				  }else{
+					  queryString+="&"+this.id+"="+this.value;  
+				  }
 			 });
 			 // Send Data 
 			$.getJSON("userManager.php?action=update"+queryString,function(data){  
@@ -65,7 +69,7 @@ Redistributions of files must retain the above copyright notice.
 				$('#FLD_displayname').val('');
 				$('#FLD_user').val('');
 				$('#FLD_password').val('');
-				$('#FLD_role').val('Editor');
+				$('#FLD_role').html('<option value="admin">'+adminRoleName+'</option><option value="editor" selected="selected">'+editorRoleName+'</option>');
 				$('#FLD_id').val(Math.random() * Math.pow(10, 17) + Math.random() * Math.pow(10, 17)); // Psuduo Unique Number
 				$('#editUser').fadeIn('slow');
 				$('#sitePages').fadeOut('slow');
@@ -83,8 +87,18 @@ Redistributions of files must retain the above copyright notice.
 				if(userData[i].id==id){
 					// Populate based on key to form value.
 					for(var key in userData[i]){  
-			       		$('#FLD_'+key).val(eval('userData[i].'+key));  
-		    		 }  				
+						if('#FLD_'+key=='#FLD_role'){
+							var rolevalue=eval('userData[i].'+key);
+							if(rolevalue=='admin'){
+								$('#FLD_role').html('<option value="admin" selected="selected">'+adminRoleName+'</option><option value="editor">'+editorRoleName+'</option>');
+							}else{
+								$('#FLD_role').html('<option value="admin">'+adminRoleName+'</option><option value="editor"  selected="selected">'+editorRoleName+'</option>');
+							}
+						}else{
+							$('#FLD_'+key).val(eval('userData[i].'+key));  
+						}
+
+					}  				
 					 found=true;
 				}
 			}
