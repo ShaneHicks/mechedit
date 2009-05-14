@@ -1,0 +1,31 @@
+<h2>Page Editor</h2>
+<div >
+	<div style="display:block;height:30px;">
+		<div id="editPage" style="float:left;">
+			Available Pages To Edit: <select id="pageList" ><option>Loading...</option></select> <input type="button" value="Edit Page" onclick="getPage();">
+		</div>
+		<div style="float:right;" id="statusBox">
+		</div>
+	</div>
+	<div id="page" style="display:block;width:100%">
+	</div>
+</div>
+
+<script>
+	// Language Definitions
+	var chooseSite="Choose Site & Page";
+	var untitledText='Untitled Region';
+	var submitChangeTxt='Submit Changes';
+	var confirmUpdate='Are you sure you wish to update this page?';
+	var surroundingText="Parent element: ";
+	var pageID=''; // Required global page ID variable;
+	// Editor Types
+	var txtStandard='Standard Editor';
+	var txtFixedWidth='Fixed Width';
+	var txtHeadingTag='Heading Tag';
+	var loadingMessage='Loading...';
+	// Used to place ajax loader instead of images.
+	if(typeof(ajaxLoader) != 'undefined'){
+		loadingMessage=ajaxLoader;
+	}
+</script>
