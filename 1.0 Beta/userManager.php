@@ -14,11 +14,16 @@ Redistributions of files must retain the above copyright notice.
 include 'configure.php';
 require_once 'authentication.php';
 session_start();
+// Verfiy the user is logged in
 if ( isset ($_GET['action']) && !processLogin()){
     echo NOT_AUTHENTICATED;
     exit ;
 }
-
+// Only admin roles can use this API
+if($_SESSION['role']!='admin'){
+	echo NOT_AUTHORIZED;
+	exit;
+}
 // Actions for this XHR File
 if ($_GET['action'] == 'list')
     listUsers();

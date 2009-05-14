@@ -18,6 +18,13 @@ if(isset($_GET['action']) && !processLogin()){
 	exit;
 }
 
+if($_GET['action']=='add' || $_GET['action']=='remove'){
+	// Only admin roles can use this API to add and remove
+	if($_SESSION['role']!='admin'){
+		echo NOT_AUTHORIZED;
+		exit;
+	}
+}
 // Default Values
 if(!isset($_GET['user'])){
 	$_GET['user']=$_SESSION['username'];

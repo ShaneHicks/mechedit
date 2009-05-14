@@ -15,6 +15,7 @@ define(LANGUAGE_NAME,'English - US');
 
 // General Web Text
 define(NOT_AUTHENTICATED,"{status :'You have not been authenticated and can not use this API service'}");  // Must be in JSON Format
+define(NOT_AUTHORIZED,"{status :'You are not authorized to use this API service.'}");  // Must be in JSON Format
 define(TXT_HOME,'Home');
 define(TXT_SITES,'Add/Remove Sites');
 define(TXT_USER,'Users');
