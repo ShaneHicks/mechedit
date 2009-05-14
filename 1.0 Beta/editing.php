@@ -10,7 +10,6 @@ your project, and use it accordingly.
 Redistributions of files must retain the above copyright notice.
 *******************************************************************************/
 require_once 'authentication.php';
-include 'siteManager.php';
 /*
  * Main Output Function
  */
