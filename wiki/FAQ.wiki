@@ -1,0 +1,7 @@
+#Frequently Asked Questions
+
+=== Can I use this to edit PHP/ASP/JSP Files? ====
+Not directly.  You can however create a .html which the PHP/ASP/JSP file includes at run time and displays.  This is the easiest way to get support into coded web pages.
+
+=== Can I use this in a commercial project? ====
+Yes, the software is licensed under MIT and GPL so feel free to use it for your customers.
