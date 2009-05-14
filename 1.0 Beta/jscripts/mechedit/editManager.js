@@ -25,9 +25,12 @@ function submitChanges(updateID){
     if (confirm(confirmUpdate)) {
         $('#statusBox').html(loadingMessage);
 
-        // Prepare Data For Update
+        // Prepare Data For Update, pull either straight value, or from tinyMCE
         var region = 'region_' + updateID;
-        var encodedData = encodeBase64(tinyMCE.get(region).getContent());
+        if($('#'+region).hasClass('mceEditor'))
+        	var encodedData = encodeBase64(tinyMCE.get(region).getContent());
+        else
+        	var encodedData = encodeBase64($('#'+region).val());
 
         // Send Data
         $.post('editManager.php?action=update&id=' + updateID + '&key=' + pageID + '&_rn=' + Math.random(0, 10000), {'data': encodedData}, function(data){
