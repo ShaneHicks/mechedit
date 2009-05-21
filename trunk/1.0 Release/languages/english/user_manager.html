@@ -1,16 +1,16 @@
 <h2>User Management</h2>
 <div>
-	<div style="display:block;">
-		<div style="float: left">
+	<div style="width:100%;">
+		<div style="float: left;width:45%;">
 			Select Site: <select id="userList" onchange="selectChange()"><option>Loading...</option></select>
 		</div>
-		<div style="float:right;" id="statusBox">
+		<div style="float:right;width:45%;" id="statusBox">
 			--
 		</div>
 	</div>
 	<br />
 	<hr>
-	<div id="editUser" style="display:none;">
+	<div id="editUser" style="display:none;width:100%;">
 		<div id="userInfo" style="float: left;">
 			<h3>User Setup</h3>
 			<table>
@@ -22,7 +22,7 @@
 			</table>
 			<input type="hidden" id="FLD_id" class="datafield">
 		</div>
-		<div id="sitePages" style="float:right; width:500px;">
+		<div id="sitePages" style="float:right; width:450px;">
 			<h3>User Pages</h3>
 			<table cellpadding="3" cellspacing="0">
 				<tr><td>Sites</td><td><select id="siteList" onchange="listSitePages();"></select></td></tr>

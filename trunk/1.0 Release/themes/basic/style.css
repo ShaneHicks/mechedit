@@ -4,6 +4,8 @@ body {
 	font-family: Geneva, Arial, Helvetica, sans-serif;
 	font-size:10pt;
 	color: #202020;
+	text-align: center; /* for IE */
+	
 }
 /*
  * #354B81 Mech
@@ -12,8 +14,13 @@ body {
 table{
 	font-size:10pt;
 }
+select{
+	display: block;
+}
 hr{
+	display: block;
 	color: #455e85;
+	margin:3px;
 }
 thead td{
 	color: black;
@@ -44,11 +51,13 @@ thead td{
 	margin-top: 9px;
 	padding-top: 10px;
 	background-position: center top;
+	text-align: left;
 }
 #content {
 	width: 766px;
 	min-height: 410px;
 	display:block;
+	margin-bottom:50px;
 }
 #footer {
 	background-image: url(images/footer.jpg);
