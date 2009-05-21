@@ -63,6 +63,10 @@ function loadSites(){
  * Get Page Data from server, decode and place onto screen.
  */
 function getPage(){
+	if($('#pageList option:selected').val()==''){
+		alert(txtPleaseSelect);
+		return;
+	}
     $('#statusBox').html(loadingMessage);
     pageID = $('#pageList option:selected').val();
     $.getJSON("editManager.php?action=get&key=" + $('#pageList option:selected').val() + "&_rn=" + Math.random(0, 10000), function(data){
