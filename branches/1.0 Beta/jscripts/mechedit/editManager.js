@@ -27,8 +27,9 @@ function submitChanges(updateID){
 
         // Prepare Data For Update, pull either straight value, or from tinyMCE
         var region = 'region_' + updateID;
-        if($('#'+region).hasClass('mceEditor'))
+        if($('#'+region).hasClass('mceTextArea')){
         	var encodedData = encodeBase64(tinyMCE.get(region).getContent());
+        }
         else
         	var encodedData = encodeBase64($('#'+region).val());
 
@@ -82,7 +83,7 @@ function getPage(){
                     pageHTML += '<textarea class="mceNoEditor" id="region_' + data[i].id + '" style="width:100%">' + decodeBase64(data[i].HTML) + '</textarea><br /><input type="button" value="' + submitChangeTxt + '" onclick="submitChanges(\'' + data[i].id + '\')"><br /><br />';
                 }
                 else {
-                    pageHTML += '<textarea id="region_' + data[i].id + '" style="width:100%">' + decodeBase64(data[i].HTML) + '</textarea><br /><input type="button" value="' + submitChangeTxt + '" onclick="submitChanges(\'' + data[i].id + '\')"><br /><br />';
+                    pageHTML += '<textarea class="mceTextArea" id="region_' + data[i].id + '" style="width:100%">' + decodeBase64(data[i].HTML) + '</textarea><br /><input type="button" value="' + submitChangeTxt + '" onclick="submitChanges(\'' + data[i].id + '\')"><br /><br />';
                 }
             pageHTML += '</div>';
         }
