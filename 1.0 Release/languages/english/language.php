@@ -22,7 +22,7 @@ define(TXT_USER,'Users');
 define(TXT_EDITOR,'Edit Pages');
 define(TXT_LOGOUT,'Logout');
 define(TXT_PORTAL,'Editing Portal');
-define(TXT_POWEREDBY,'powered by MechEdit');
+define(TXT_POWEREDBY,'is powered by MechEdit');
 // NOTE: These next values must match exactly the value in page_editor.js
 define(TXT_STANDARD,'Standard Editor');
 define(TXT_FIXED_WIDTH,'Fixed Width');
